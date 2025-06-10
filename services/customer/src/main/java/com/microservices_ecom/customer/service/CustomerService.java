@@ -42,6 +42,14 @@ public class CustomerService {
                 .toList();
     }
 
+    @Transactional
+    public void deleteCustomer(String customerId) {
+        if (!customerRepository.existsById(customerId)) {
+            throw new CustomerNotFoundException("Customer not found with the ID: " + customerId);
+        }
+        customerRepository.deleteById(customerId);
+    }
+
     public CustomerResponse findById(String customerId) {
         return customerRepository.findById(customerId)
                 .map(mapper::fromCustomer)
