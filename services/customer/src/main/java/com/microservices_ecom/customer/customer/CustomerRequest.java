@@ -16,6 +16,5 @@ public record CustomerRequest(
         @Email(message = "Customer email is not a valid email address")
         String email,
 
-        Address address
-) {
+        Address address) {
 }
